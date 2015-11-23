@@ -32,7 +32,7 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
 
   // export shared models
   const models = {};
-  glob.sync('./models/*.js').forEach(loadModule(models));
+  glob.sync('./models/*.js', { cwd: __dirname }).forEach(loadModule(models));
 
   /**
    * Accepts restify server instance and attaches handlers
