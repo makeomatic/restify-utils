@@ -15,7 +15,8 @@ returns Function:
 1. Function(server, family, prefix = '/api') with extra properties:
 2. endpoints
 3. middleware
-4. models
+
+Populates `configuration.models`
 
 Goes through endpoints, that are in format of the following:
 
