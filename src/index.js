@@ -30,6 +30,10 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
   const middleware = {};
   glob.sync(`${middlewareDir}/*.js`).forEach(loadModule(middleware));
 
+  // export shared models
+  const models = {};
+  glob.sync('./models/*.js').forEach(loadModule(models));
+
   /**
    * Accepts restify server instance and attaches handlers
    * @param  {RestifyServer} server
@@ -74,6 +78,9 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
 
   attach.files = files;
   attach.middleware = middleware;
+  attach.models = ld.mapValues(models, generator => {
+    return generator(config);
+  });
 
   return attach;
 };
