@@ -1,6 +1,6 @@
 {
   "name": "restify-utils",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Convenient utils for handling dynamic routing and configuration with restify framework",
   "main": "./lib/index.js",
   "scripts": {
@@ -19,7 +19,11 @@
   },
   "homepage": "https://github.com/makeomatic/restify-utils#readme",
   "dependencies": {
-
+    "common-errors": "^0.5.3",
+    "debug": "^2.2.0",
+    "glob": "^6.0.1",
+    "lodash": "^3.10.1",
+    "ms-amqp-validation": "^0.4.1"
   },
   "devDependencies": {
     "babel": "^5.8.34",
