@@ -37,6 +37,10 @@ module.exports = function getUserClass(config) {
       return this.data.id;
     }
 
+    get attributes() {
+      return this.data.attributes || {};
+    }
+
     isAdmin() {
       const { roles } = this.data.attributes;
       return roles && roles.indexOf('admin') !== -1;
