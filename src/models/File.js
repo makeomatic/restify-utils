@@ -8,7 +8,9 @@ const validator = require('../validator.js');
 module.exports = function getUserClass(config) {
   const host = config.host;
   const files = config.files || {};
+  const users = config.users || {};
   const attachPoint = files.attachPoint || 'files';
+  const usersAttachPoint = users.attachPoint || 'users';
 
   /**
    * @class User
@@ -59,6 +61,11 @@ module.exports = function getUserClass(config) {
         file.links = {
           self: host + attachPoint + '/' + file.id,
         };
+
+        const owner = file.attributes.owner;
+        if (owner) {
+          file.links.owner = host + usersAttachPoint + '/' + encodeURIComponent(owner);
+        }
       }
 
       return file;
