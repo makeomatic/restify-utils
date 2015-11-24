@@ -1,4 +1,5 @@
 {
+  "id": "User",
   "type": "object",
   "additionalProperties": false,
   "required": [ "id", "attributes" ],
