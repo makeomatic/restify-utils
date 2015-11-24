@@ -7,7 +7,8 @@ const validator = require('../validator.js');
  */
 module.exports = function getUserClass(config) {
   const host = config.host;
-  const attachPoint = config.files.attachPoint;
+  const files = config.files || {};
+  const attachPoint = files.attachPoint || 'files';
 
   /**
    * @class User
@@ -28,9 +29,9 @@ module.exports = function getUserClass(config) {
         attributes,
       };
 
-      const result = validator.validateSync('File', this.data);
-      if (result.error) {
-        throw result.error;
+      const { error } = validator.validateSync('File', this.data);
+      if (error) {
+        throw error;
       }
     }
 
