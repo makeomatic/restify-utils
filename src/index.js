@@ -40,8 +40,7 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
    * @param  {String}        family
    */
   function attach(server, family, prefix = '/api') {
-    config.attachPoint = ld.compact([prefix, family]).join('/');
-    config.family = family;
+    config[family].attachPoint = ld.compact([ prefix, family ]).join('/');
 
     debug('attaching with family %s and prefix %s', family, prefix);
 

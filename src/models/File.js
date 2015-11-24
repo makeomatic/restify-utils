@@ -6,7 +6,8 @@ const validator = require('../validator.js');
  * Defines default user class
  */
 module.exports = function getUserClass(config) {
-  const { host, attachPoint } = config;
+  const host = config.host;
+  const attachPoint = config.files.attachPoint;
 
   /**
    * @class User
