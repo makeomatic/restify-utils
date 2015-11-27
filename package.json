@@ -1,6 +1,6 @@
 {
   "name": "restify-utils",
-  "version": "0.1.12",
+  "version": "0.2.0",
   "description": "Convenient utils for handling dynamic routing and configuration with restify framework",
   "main": "./lib/index.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "debug": "^2.2.0",
     "glob": "^6.0.1",
     "lodash": "^3.10.1",
-    "ms-amqp-validation": "^0.4.1"
+    "ms-validation": "^0.5.6"
   },
   "devDependencies": {
     "babel": "^5.8.34",
@@ -31,7 +31,7 @@
     "babel-eslint": "^4.1.4",
     "chai": "^3.4.1",
     "eslint": "^1.8.0",
-    "eslint-config-airbnb": "^1.0.0",
+    "eslint-config-airbnb": "^1.0.2",
     "eslint-plugin-mocha": "^1.0.0",
     "eslint-plugin-react": "^3.8.0",
     "mocha": "^2.3.3"
