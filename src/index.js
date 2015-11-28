@@ -48,13 +48,15 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
       debug('attaching file %s', name);
 
       ld.forOwn(file, function iterateOverProperties(props, method) {
-        debug('  attaching method %s and path %s', method, props.path);
+        debug('  attaching method %s', method);
 
         ld.forOwn(props.handlers, function iterateOverVersionedHandler(handler, versionString) {
           debug('    attaching handler for version %s', versionString);
 
-          const paths = ld([ props.paths, props.path ]).flattenDeep().compact();
-          paths.each(function attachPath(uriPath) {
+          ld([ props.paths, props.path ])
+          .flattenDeep()
+          .compact()
+          .each(function attachPath(uriPath) {
             debug('      attaching handler for path %s', uriPath);
 
             const args = [
@@ -74,7 +76,8 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
 
             args.push(handler);
             server[method].apply(server, args);
-          });
+          })
+          .commit();
         });
       });
     });
