@@ -56,7 +56,7 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
           ld([ props.paths, props.path ])
           .flattenDeep()
           .compact()
-          .each(function attachPath(uriPath) {
+          .each(function attachPath(uriPath, idx, arr) {
             debug('      attaching handler for path %s', uriPath);
 
             const args = [
@@ -67,6 +67,11 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
               },
             ];
 
+            // we need to make sure that name is unique
+            if (arr.length > 1) {
+              args[0].name += `.${idx}`;
+            }
+
             if (props.middleware) {
               props.middleware.forEach(function attachMiddleware(middlewareName) {
                 debug('      pushed middleware %s', middlewareName);
@@ -75,7 +80,10 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
             }
 
             args.push(handler);
-            server[method].apply(server, args);
+            const attached = server[method].apply(server, args);
+            if (!attached) {
+              process.stderr.write(`route ${args[0].name} with path ${args[0].path} could not be attached\n`);
+            }
           })
           .commit();
         });
