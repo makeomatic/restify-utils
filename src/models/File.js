@@ -64,7 +64,7 @@ module.exports = function getUserClass(config) {
 
       if (addLink) {
         file.links = {
-          self: host + attachPoint + '/' + file.id,
+          self: host + attachPoint + '/' + encodeURIComponent(file.id),
         };
 
         const owner = file.attributes.owner;
