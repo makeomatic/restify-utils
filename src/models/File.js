@@ -26,13 +26,21 @@ module.exports = function getUserClass(config) {
         throw new Errors.ValidationError('attributes must be an object', 400, 'arguments[1]');
       }
 
-      this.data = {
+      const data = this.data = {
         type: 'file',
         id,
         attributes,
       };
 
-      const { error } = validator.validateSync('File', this.data);
+      if (attributes.startedAt) {
+        attributes.startedAt = parseInt(attributes.startedAt, 10);
+      }
+
+      if (attributes.contentLength) {
+        attributes.contentLength = parseInt(attributes.contentLength, 10);
+      }
+
+      const { error } = validator.validateSync('File', data);
       if (error) {
         throw error;
       }

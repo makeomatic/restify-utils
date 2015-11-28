@@ -6,7 +6,7 @@
   "properties": {
     "type": {
       "type": "string",
-      "enum": [ "user" ]
+      "constant": "user"
     },
     "id": {
       "type": "string",

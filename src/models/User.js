@@ -25,13 +25,13 @@ module.exports = function getUserClass(config) {
         throw new Errors.ValidationError('attributes must be an object', 400, 'arguments[1]');
       }
 
-      this.data = {
+      const data = this.data = {
         type: 'user',
         id,
         attributes,
       };
 
-      const result = validator.validateSync('User', this.data);
+      const result = validator.validateSync('User', data);
       if (result.error) {
         throw result.error;
       }
