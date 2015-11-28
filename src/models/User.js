@@ -1,3 +1,4 @@
+const ld = require('lodash');
 const Errors = require('common-errors');
 const validator = require('../validator.js');
 
@@ -25,6 +26,7 @@ module.exports = function getUserClass(config) {
       }
 
       this.data = {
+        type: 'user',
         id,
         attributes,
       };
@@ -54,11 +56,7 @@ module.exports = function getUserClass(config) {
      * @return {Object}
      */
     serialize(addLink) {
-      const user = {
-        type: 'user',
-        id: this.data.id,
-        attributes: this.data.attributes,
-      };
+      const user = ld.clone(this.data);
 
       if (addLink) {
         user.links = {

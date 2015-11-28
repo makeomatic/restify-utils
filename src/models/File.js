@@ -27,6 +27,7 @@ module.exports = function getUserClass(config) {
       }
 
       this.data = {
+        type: 'file',
         id,
         attributes,
       };
@@ -51,11 +52,7 @@ module.exports = function getUserClass(config) {
      * @return {Object}
      */
     serialize(addLink) {
-      const file = {
-        type: 'file',
-        id: this.id,
-        attributes: this.attributes,
-      };
+      const file = ld.clone(this.data);
 
       if (addLink) {
         file.links = {

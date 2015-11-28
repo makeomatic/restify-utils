@@ -4,6 +4,10 @@
   "additionalProperties": false,
   "required": [ "id", "attributes" ],
   "properties": {
+    "type": {
+      "type": "string",
+      "enum": [ "user" ]
+    },
     "id": {
       "type": "string",
       "minLength": 3,
