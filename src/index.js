@@ -53,23 +53,28 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
         ld.forOwn(props.handlers, function iterateOverVersionedHandler(handler, versionString) {
           debug('    attaching handler for version %s', versionString);
 
-          const args = [
-            {
-              name: `${family}.${name}.${method}`,
-              path: `${prefix}/${family + props.path}`,
-              version: versionString.split(','),
-            },
-          ];
+          const paths = ld([ props.paths, props.path ]).flattenDeep().compact();
+          paths.each(function attachPath(uriPath) {
+            debug('      attaching handler for path %s', uriPath);
 
-          if (props.middleware) {
-            props.middleware.forEach(function attachMiddleware(middlewareName) {
-              debug('      pushed middleware %s', middlewareName);
-              args.push(middleware[middlewareName]);
-            });
-          }
+            const args = [
+              {
+                name: `${family}.${name}.${method}`,
+                path: `${prefix}/${family + uriPath}`,
+                version: versionString.split(','),
+              },
+            ];
 
-          args.push(handler);
-          server[method].apply(server, args);
+            if (props.middleware) {
+              props.middleware.forEach(function attachMiddleware(middlewareName) {
+                debug('      pushed middleware %s', middlewareName);
+                args.push(middleware[middlewareName]);
+              });
+            }
+
+            args.push(handler);
+            server[method].apply(server, args);
+          });
         });
       });
     });
