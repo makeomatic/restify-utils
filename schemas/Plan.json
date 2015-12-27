@@ -1,0 +1,21 @@
+{
+  "id": "Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [ "id", "attributes" ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "constant": "plan"
+    },
+    "id": {
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+
+      }
+    }
+  }
+}

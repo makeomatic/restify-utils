@@ -5,17 +5,15 @@ const validator = require('../validator.js');
 /**
  * Defines default user class
  */
-module.exports = function getFileClass(config) {
+module.exports = function getPlanClass(config) {
   const host = config.host;
-  const files = config.files || {};
-  const users = config.users || {};
-  const attachPoint = files.attachPoint || 'files';
-  const usersAttachPoint = users.attachPoint || 'users';
+  const payments = config.payments || {};
+  const attachPoint = payments.attachPoint || 'payments';
 
   /**
-   * @class User
+   * @class Plan
    */
-  return class File {
+  return class Plan {
 
     constructor(id, attributes = {}) {
       if (!id) {
@@ -27,20 +25,12 @@ module.exports = function getFileClass(config) {
       }
 
       const data = this.data = {
-        type: 'file',
+        type: 'plan',
         id,
         attributes,
       };
 
-      if (attributes.startedAt) {
-        attributes.startedAt = parseInt(attributes.startedAt, 10);
-      }
-
-      if (attributes.contentLength) {
-        attributes.contentLength = parseInt(attributes.contentLength, 10);
-      }
-
-      const { error } = validator.validateSync('File', data);
+      const { error } = validator.validateSync('Plan', data);
       if (error) {
         throw error;
       }
@@ -60,28 +50,23 @@ module.exports = function getFileClass(config) {
      * @return {Object}
      */
     serialize(addLink) {
-      const file = ld.clone(this.data);
+      const plan = ld.clone(this.data);
 
       if (addLink) {
-        file.links = {
-          self: host + attachPoint + '/' + encodeURIComponent(file.id),
+        plan.links = {
+          self: host + attachPoint + '/plan/' + encodeURIComponent(plan.id),
         };
-
-        const owner = file.attributes.owner;
-        if (owner) {
-          file.links.owner = host + usersAttachPoint + '/' + encodeURIComponent(owner);
-        }
       }
 
-      return file;
+      return plan;
     }
 
     static transform(data, addLink) {
-      return File.deserialize(data).serialize(addLink);
+      return Plan.deserialize(data).serialize(addLink);
     }
 
     static deserialize(data) {
-      return new File(data.filename, ld.omit(data, [ 'filename', 'uploadId', 'location' ]));
+      return new Plan(data.plan.id, data);
     }
   };
 };
