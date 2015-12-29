@@ -2,6 +2,7 @@ const ld = require('lodash');
 const debug = require('debug')('restify-utils');
 const glob = require('glob');
 const path = require('path');
+const { METHODS } = require('http');
 
 /**
  * Load module, separate it's name and pushed to container
@@ -45,6 +46,10 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
     debug('attaching with family %s and prefix %s', family, prefix);
 
     ld.forOwn(files, function attachRoute(file, name) {
+      if (METHODS.indexOf(name.toUpperCase()) === -1) {
+        return;
+      }
+
       debug('attaching file %s', name);
 
       ld.forOwn(file, function iterateOverProperties(props, method) {
