@@ -46,13 +46,12 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
     debug('attaching with family %s and prefix %s', family, prefix);
 
     ld.forOwn(files, function attachRoute(file, name) {
-      if (METHODS.indexOf(name.toUpperCase()) === -1) {
-        return;
-      }
-
       debug('attaching file %s', name);
 
       ld.forOwn(file, function iterateOverProperties(props, method) {
+        if (METHODS.indexOf(method.toUpperCase()) === -1) {
+          return;
+        }
         debug('  attaching method %s', method);
 
         ld.forOwn(props.handlers, function iterateOverVersionedHandler(handler, versionString) {
