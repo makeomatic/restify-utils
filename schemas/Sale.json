@@ -20,9 +20,6 @@
         "update_time": {
           "type": "integer"
         },
-        "owner": {
-          "type": "string"
-        },
         "state": {
           "type": "string",
           "enum": ["created", "approved", "failed", "canceled", "expired", "pending"]

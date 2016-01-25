@@ -49,7 +49,7 @@ module.exports = function getSaleClass(config) {
      * @param  {Boolean} host - resource location
      * @return {Object}
      */
-    serialize(addLink) {
+    serialize(addLink, isAdmin) {
       const sale = ld.clone(this.data);
 
       if (addLink) {
@@ -58,15 +58,21 @@ module.exports = function getSaleClass(config) {
         };
       }
 
+      if (!isAdmin) {
+        (sale.attributes.transactions || []).forEach(transaction => {
+          transaction.related_resources = undefined;
+        });
+      }
+
       return sale;
     }
 
-    static transform(data, addLink) {
-      return Sale.deserialize(data).serialize(addLink);
+    static transform(data, addLink, isAdmin) {
+      return Sale.deserialize(data).serialize(addLink, isAdmin);
     }
 
     static deserialize(data) {
-      return new Sale(data.id, data);
+      return new Sale(data.sale.id, data);
     }
   };
 };

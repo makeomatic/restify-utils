@@ -50,15 +50,15 @@ module.exports = function getSaleClass(config) {
      * @return {Object}
      */
     serialize(addLink) {
-      const sale = ld.clone(this.data);
+      const recurring = ld.clone(this.data);
 
       if (addLink) {
-        sale.links = {
-          self: host + attachPoint + '/agreements/transactions/' + encodeURIComponent(sale.id),
+        recurring.links = {
+          self: host + attachPoint + '/transactions/' + encodeURIComponent(recurring.id),
         };
       }
 
-      return sale;
+      return recurring;
     }
 
     static transform(data, addLink) {
@@ -66,7 +66,12 @@ module.exports = function getSaleClass(config) {
     }
 
     static deserialize(data) {
-      return new Recurring(data.id, data);
+      const {
+        transaction,
+        ...other,
+      } = data;
+
+      return new Recurring(transaction.transaction_id, { ...transaction, ...other });
     }
   };
 };

@@ -11,9 +11,9 @@ module.exports = function getSaleClass(config) {
   const attachPoint = payments.attachPoint || 'payments';
 
   /**
-   * @class Transaction
+   * @class Agreement
    */
-  return class Transaction {
+  return class Agreement {
 
     constructor(id, attributes = {}) {
       if (!id) {
@@ -25,12 +25,12 @@ module.exports = function getSaleClass(config) {
       }
 
       const data = this.data = {
-        type: 'transaction',
+        type: 'agreement',
         id,
         attributes,
       };
 
-      const { error } = validator.validateSync('Transaction', data);
+      const { error } = validator.validateSync('Agreement', data);
       if (error) {
         throw error;
       }
@@ -50,23 +50,28 @@ module.exports = function getSaleClass(config) {
      * @return {Object}
      */
     serialize(addLink) {
-      const transaction = ld.clone(this.data);
+      const agreement = ld.clone(this.data);
 
       if (addLink) {
-        transaction.links = {
-          self: host + attachPoint + '/transactions/' + encodeURIComponent(transaction.id),
+        agreement.links = {
+          self: host + attachPoint + '/agreements/' + encodeURIComponent(agreement.id),
         };
       }
 
-      return transaction;
+      return agreement;
     }
 
     static transform(data, addLink) {
-      return Transaction.deserialize(data).serialize(addLink);
+      return Agreement.deserialize(data).serialize(addLink);
     }
 
     static deserialize(data) {
-      return new Transaction(data.id, data);
+      const {
+        agreement,
+        ...other,
+      } = data;
+
+      return new Agreement(agreement.id, { ...agreement, ...other });
     }
   };
 };
