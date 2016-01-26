@@ -60,7 +60,7 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
           ld([ props.paths, props.path ])
           .flattenDeep()
           .compact()
-          .each(function attachPath(uriPath, idx, arr) {
+          .forEach(function attachPath(uriPath, idx, arr) {
             debug('      attaching handler for path %s', uriPath);
 
             const args = [
@@ -88,8 +88,7 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
             if (!attached) {
               process.stderr.write(`route ${args[0].name} with path ${args[0].path} could not be attached\n`);
             }
-          })
-          .commit();
+          });
         });
       });
     });
