@@ -2,6 +2,12 @@ const Errors = require('common-errors');
 const ld = require('lodash');
 const validator = require('../validator.js');
 
+const STATUS_MAP = {
+  1: 'pending',
+  2: 'uploaded',
+  3: 'processed',
+};
+
 /**
  * Defines default user class
  */
@@ -38,6 +44,10 @@ module.exports = function getFileClass(config) {
 
       if (attributes.contentLength) {
         attributes.contentLength = parseInt(attributes.contentLength, 10);
+      }
+
+      if (attributes.status) {
+        attributes.status = STATUS_MAP[+attributes.status];
       }
 
       const { error } = validator.validateSync('File', data);
@@ -81,7 +91,7 @@ module.exports = function getFileClass(config) {
     }
 
     static deserialize(data) {
-      return new File(data.filename, ld.omit(data, [ 'filename', 'uploadId', 'location' ]));
+      return new File(data.filename, ld.omit(data, ['filename', 'uploadId', 'location']));
     }
   };
 };
