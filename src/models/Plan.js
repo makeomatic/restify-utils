@@ -66,7 +66,7 @@ module.exports = function getPlanClass(config) {
     }
 
     static deserialize(data) {
-      return new Plan(data.name || data.plan.id, data);
+      return new Plan(data.alias || data.id, data);
     }
   };
 };
