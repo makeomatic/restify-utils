@@ -41,7 +41,7 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
    * @param  {String}        family
    */
   function attach(server, family, prefix = '/api') {
-    config[family].attachPoint = ld.compact([ prefix, family ]).join('/');
+    config[family].attachPoint = ld.compact([prefix, family]).join('/');
 
     debug('attaching with family %s and prefix %s', family, prefix);
 
@@ -49,7 +49,7 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
       debug('attaching file %s', name);
 
       ld.forOwn(file, function iterateOverProperties(props, method) {
-        if (METHODS.indexOf(method.toUpperCase()) === -1) {
+        if (METHODS.indexOf(method.toUpperCase()) === -1 && method.toUpperCase() !== 'DEL') {
           return;
         }
         debug('  attaching method %s', method);
@@ -57,7 +57,7 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
         ld.forOwn(props.handlers, function iterateOverVersionedHandler(handler, versionString) {
           debug('    attaching handler for version %s', versionString);
 
-          ld([ props.paths, props.path ])
+          ld([props.paths, props.path])
           .flattenDeep()
           .compact()
           .forEach(function attachPath(uriPath, idx, arr) {
@@ -86,7 +86,7 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
             args.push(handler);
             const attached = server[method].apply(server, args);
             if (!attached) {
-              process.stderr.write(`route ${args[0].name} with path ${args[0].path} could not be attached\n`);
+              console.error('route %s with path %s could not be attached', args[0].name, args[0].path); // eslint-disable-line
             }
           });
         });
