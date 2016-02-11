@@ -37,7 +37,7 @@ module.exports = function getPlanClass(config) {
     }
 
     get id() {
-      return this.attributes.id || this.data.id;
+      return this.data.id;
     }
 
     get attributes() {
@@ -66,7 +66,7 @@ module.exports = function getPlanClass(config) {
     }
 
     static deserialize(data) {
-      return new Plan(data.plan && data.plan.id || data.name, data);
+      return new Plan(data.name || data.plan.id, data);
     }
   };
 };
