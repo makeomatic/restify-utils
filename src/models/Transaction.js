@@ -30,6 +30,8 @@ module.exports = function getSaleClass(config) {
         attributes,
       };
 
+      attributes.humanDescription = this.remapDescription(attributes.type);
+
       const { error } = validator.validateSync('Transaction', data);
       if (error) {
         throw error;
@@ -42,6 +44,20 @@ module.exports = function getSaleClass(config) {
 
     get attributes() {
       return this.data.attributes || {};
+    }
+
+    remapDescription(type) {
+      switch (type) {
+        case 0:
+          return 'Cloud Service subscription';
+        case 1:
+          return 'Extra 3D models purchase';
+        case 2:
+          return '3D Printing service charge';
+        default:
+          process.stderr.write('unexpected transaction type\n');
+          return '';
+      }
     }
 
     /**

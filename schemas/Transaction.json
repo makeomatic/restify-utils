@@ -1,3 +1,45 @@
 {
-
+  "id": "Transaction",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "constant": "transaction"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "date": {
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "payer": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer"
+        },
+        "humanDescription": {
+          "type": "string"
+        }
+      }
+    }
+  }
 }
