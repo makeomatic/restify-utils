@@ -71,6 +71,11 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
               },
             ];
 
+            // if we actually have a regexp in place - modify it
+            if (props.regexp) {
+              args[0].path = props.regexp(prefix, family, uriPath);
+            }
+
             // we need to make sure that name is unique
             if (arr.length > 1) {
               args[0].name += `.${idx}`;
