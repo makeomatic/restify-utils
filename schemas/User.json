@@ -11,8 +11,7 @@
     "id": {
       "type": "string",
       "minLength": 3,
-      "maxLength": 50,
-      "format": "email"
+      "maxLength": 50
     },
     "attributes": {
       "type": "object",
