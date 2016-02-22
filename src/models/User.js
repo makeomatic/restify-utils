@@ -38,7 +38,7 @@ module.exports = function getUserClass(config) {
 
       const data = this.data = {
         type: 'user',
-        id,
+        id: isPublic ? attributes.alias : id,
         attributes: isPublic ? this.omitPrivateData(attributes) : attributes,
       };
 
