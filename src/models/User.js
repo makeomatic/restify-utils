@@ -16,7 +16,18 @@ module.exports = function getUserClass(config) {
    */
   return class User {
 
-    constructor(id, attributes = {}) {
+    static dataWhiteList = [
+      'roles',
+      'alias',
+      'firstName',
+      'lastName',
+      'companyName',
+      'country',
+      'city',
+      'gender',
+    ];
+
+    constructor(id, attributes = {}, isPublic) {
       if (!id) {
         throw new Errors.ValidationError('must include id', 400, 'arguments[0]');
       }
@@ -28,7 +39,7 @@ module.exports = function getUserClass(config) {
       const data = this.data = {
         type: 'user',
         id,
-        attributes,
+        attributes: isPublic ? this.omitPrivateData(attributes) : attributes,
       };
 
       const result = validator.validateSync('User', data);
@@ -48,6 +59,10 @@ module.exports = function getUserClass(config) {
     isAdmin() {
       const { roles } = this.data.attributes;
       return roles && roles.indexOf('admin') !== -1;
+    }
+
+    omitPrivateData(data) {
+      return ld.pick(data, User.dataWhiteList);
     }
 
     /**
@@ -73,7 +88,7 @@ module.exports = function getUserClass(config) {
     }
 
     static deserialize(data) {
-      return new User(data.username, data.metadata[audience]);
+      return new User(data.username, data.metadata[audience], data.public);
     }
   };
 };
