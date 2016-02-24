@@ -23,7 +23,15 @@ module.exports = function getFileClass(config) {
    */
   return class File {
 
-    constructor(id, attributes = {}) {
+    static dataWhiteList = [
+      'public',
+      'contentType',
+      'contentLength',
+      'humanName',
+      'owner',
+    ];
+
+    constructor(id, attributes = {}, isPublic) {
       if (!id) {
         throw new Errors.ValidationError('must include id', 400, 'arguments[0]');
       }
@@ -35,7 +43,7 @@ module.exports = function getFileClass(config) {
       const data = this.data = {
         type: 'file',
         id,
-        attributes,
+        attributes: isPublic ? ld.pick(attributes, File.dataWhiteList) : attributes,
       };
 
       if (attributes.startedAt) {
@@ -86,12 +94,12 @@ module.exports = function getFileClass(config) {
       return file;
     }
 
-    static transform(data, addLink) {
-      return File.deserialize(data).serialize(addLink);
+    static transform(data, addLink, isPublic) {
+      return File.deserialize(data, isPublic).serialize(addLink);
     }
 
-    static deserialize(data) {
-      return new File(data.filename, ld.omit(data, ['filename', 'uploadId', 'location']));
+    static deserialize(data, isPublic) {
+      return new File(data.filename, ld.omit(data, ['filename', 'uploadId', 'location']), isPublic);
     }
   };
 };

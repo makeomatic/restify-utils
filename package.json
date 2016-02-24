@@ -1,6 +1,6 @@
 {
   "name": "restify-utils",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "description": "Convenient utils for handling dynamic routing and configuration with restify framework",
   "main": "./lib/index.js",
   "scripts": {
