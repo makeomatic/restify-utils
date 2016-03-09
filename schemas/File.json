@@ -2,7 +2,7 @@
   "id": "File",
   "type": "object",
   "additionalProperties": false,
-  "required": [ "id", "attributes" ],
+  "required": ["id", "attributes"],
   "properties": {
     "type": {
       "type": "string",
@@ -10,20 +10,19 @@
     },
     "id": {
       "type": "string",
-      "pattern": "^(?:[^\/]+\/)?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
     },
     "attributes": {
       "type": "object",
       "properties": {
-        "contentType": {
+        "name": {
           "type": "string"
         },
-        "contentLength": {
-          "type": "integer"
+        "description": {
+          "type": "string"
         },
-        "md5Hash": {
-          "type": "string",
-          "length": 32
+        "website": {
+          "type": "string"
         },
         "owner": {
           "type": "string"
@@ -35,7 +34,56 @@
         "startedAt": {
           "type": "integer"
         },
-        "humanName": {
+        "uploadedAt": {
+          "type": "integer"
+        },
+        "public": {
+          "type": "boolean"
+        },
+        "parts": {
+          "type": "integer"
+        },
+        "model": {
+          "type": "string"
+        },
+        "preview": {
+          "type": "string"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/file"
+          }
+        }
+      },
+      "patternProperties": {
+        "^texture_\\d+$": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "file": {
+      "type": "object",
+      "properties": {
+        "filename": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["c-bin", "c-texture", "c-preview"]
+        },
+        "contentLength": {
+          "type": "integer"
+        },
+        "contentType": {
+          "type": "string"
+        },
+        "contentEncoding": {
+          "type": "string"
+        },
+        "md5Hash": {
           "type": "string"
         }
       }

@@ -1,6 +1,7 @@
 const Errors = require('common-errors');
 const ld = require('lodash');
 const validator = require('../validator.js');
+const isProduction = process.env.NODE_ENV === 'production';
 
 const STATUS_MAP = {
   1: 'pending',
@@ -25,10 +26,19 @@ module.exports = function getFileClass(config) {
 
     static dataWhiteList = [
       'public',
-      'contentType',
       'contentLength',
-      'humanName',
-      'owner',
+      'name',
+      'description',
+      'website',
+      'files',
+      'parts',
+    ];
+
+    static int = [
+      'startedAt',
+      'uploadedAt',
+      'contentLength',
+      'parts',
     ];
 
     constructor(id, attributes = {}, isPublic) {
@@ -46,16 +56,21 @@ module.exports = function getFileClass(config) {
         attributes: isPublic ? ld.pick(attributes, File.dataWhiteList) : attributes,
       };
 
-      if (attributes.startedAt) {
-        attributes.startedAt = parseInt(attributes.startedAt, 10);
-      }
+      // coerce types
+      File.int.forEach(field => {
+        if (attributes[field]) {
+          attributes[field] = parseInt(attributes[field], 10);
+        }
+      });
 
-      if (attributes.contentLength) {
-        attributes.contentLength = parseInt(attributes.contentLength, 10);
-      }
-
+      // remap status to human description
       if (attributes.status) {
         attributes.status = STATUS_MAP[+attributes.status];
+      }
+
+      // skip checking in production
+      if (isProduction) {
+        return;
       }
 
       const { error } = validator.validateSync('File', data);
@@ -99,7 +114,7 @@ module.exports = function getFileClass(config) {
     }
 
     static deserialize(data, isPublic) {
-      return new File(data.filename, ld.omit(data, ['filename', 'uploadId', 'location']), isPublic);
+      return new File(data.filename, data, isPublic);
     }
   };
 };
