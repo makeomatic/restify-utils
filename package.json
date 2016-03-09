@@ -21,7 +21,7 @@
   "dependencies": {
     "common-errors": "^0.5.3",
     "debug": "^2.2.0",
-    "glob": "^6.0.1",
+    "glob": "^7.0.3",
     "lodash": "^4.3.0"
   },
   "peerDependencies": {
@@ -39,10 +39,9 @@
     "babel-plugin-transform-strict-mode": "^6.3.13",
     "babel-register": "^6.3.13",
     "chai": "^3.4.1",
-    "eslint": "^1.10.3",
-    "eslint-config-airbnb": "^3.1.0",
-    "eslint-plugin-mocha": "^1.0.0",
-    "eslint-plugin-react": "^3.16.1",
+    "eslint": "~2.2.0",
+    "eslint-config-airbnb": "^6.1.0",
+    "eslint-plugin-mocha": "^2.0.0",
     "mocha": "^2.3.3"
   }
 }
