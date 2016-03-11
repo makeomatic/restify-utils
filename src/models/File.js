@@ -97,12 +97,12 @@ module.exports = function getFileClass(config) {
 
       if (addLink) {
         file.links = {
-          self: host + attachPoint + '/' + encodeURIComponent(file.id),
+          self: `${host}${attachPoint}/${encodeURIComponent(file.id)}`,
         };
 
         const owner = file.attributes.owner;
         if (owner) {
-          file.links.owner = host + usersAttachPoint + '/' + encodeURIComponent(owner);
+          file.links.owner = `${host}${usersAttachPoint}/${encodeURIComponent(owner)}`;
         }
       }
 
@@ -114,7 +114,7 @@ module.exports = function getFileClass(config) {
     }
 
     static deserialize(data, isPublic) {
-      return new File(data.filename, data, isPublic);
+      return new File(data.uploadId, data, isPublic);
     }
   };
 };
