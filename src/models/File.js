@@ -14,10 +14,6 @@ const STATUS_MAP = {
  */
 module.exports = function getFileClass(config) {
   const host = config.host;
-  const files = config.files || {};
-  const users = config.users || {};
-  const attachPoint = files.attachPoint || 'files';
-  const usersAttachPoint = users.attachPoint || 'users';
 
   /**
    * @class User
@@ -94,6 +90,10 @@ module.exports = function getFileClass(config) {
      */
     serialize(addLink) {
       const file = ld.clone(this.data);
+      const files = config.files || {};
+      const users = config.users || {};
+      const attachPoint = files.attachPoint || 'files';
+      const usersAttachPoint = users.attachPoint || 'users';
 
       if (addLink) {
         file.links = {
