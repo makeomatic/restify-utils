@@ -70,7 +70,7 @@ module.exports = function getSaleClass(config) {
 
       if (addLink) {
         transaction.links = {
-          self: host + attachPoint + '/transactions/' + encodeURIComponent(transaction.id),
+          self: `${host}${attachPoint}/transactions/${encodeURIComponent(transaction.id)}`,
         };
       }
 

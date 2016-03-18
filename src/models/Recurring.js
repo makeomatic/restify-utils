@@ -54,7 +54,7 @@ module.exports = function getSaleClass(config) {
 
       if (addLink) {
         recurring.links = {
-          self: host + attachPoint + '/transactions/' + encodeURIComponent(recurring.id),
+          self: `${host}${attachPoint}/transactions/${encodeURIComponent(recurring.id)}`,
         };
       }
 

@@ -75,7 +75,7 @@ module.exports = function getUserClass(config) {
 
       if (addLink) {
         user.links = {
-          self: host + attachPoint + '/' + encodeURIComponent(user.id),
+          self: `${host}${attachPoint}/${encodeURIComponent(user.id)}`,
         };
       }
 

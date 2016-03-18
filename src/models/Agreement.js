@@ -54,7 +54,7 @@ module.exports = function getSaleClass(config) {
 
       if (addLink) {
         agreement.links = {
-          self: host + attachPoint + '/agreements/' + encodeURIComponent(agreement.id),
+          self: `${host}${attachPoint}/agreements/${encodeURIComponent(agreement.id)}`,
         };
       }
 

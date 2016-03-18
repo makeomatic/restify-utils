@@ -54,7 +54,7 @@ module.exports = function getPlanClass(config) {
 
       if (addLink) {
         plan.links = {
-          self: host + attachPoint + '/plans/' + encodeURIComponent(plan.id),
+          self: `${host}${attachPoint}/plans/${encodeURIComponent(plan.id)}`,
         };
       }
 
