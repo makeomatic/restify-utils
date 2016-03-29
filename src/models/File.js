@@ -14,6 +14,7 @@ const STATUS_MAP = {
  */
 module.exports = function getFileClass(config) {
   const host = config.host;
+  const web = config.web;
 
   /**
    * @class User
@@ -94,15 +95,22 @@ module.exports = function getFileClass(config) {
       const users = config.users || {};
       const attachPoint = files.attachPoint || 'files';
       const usersAttachPoint = users.attachPoint || 'users';
+      const id = file.id;
 
       if (addLink) {
         file.links = {
-          self: `${host}${attachPoint}/${encodeURIComponent(file.id)}`,
+          self: `${host}${attachPoint}/${encodeURIComponent(id)}`,
         };
 
         const owner = file.attributes.owner;
         if (owner) {
           file.links.owner = `${host}${usersAttachPoint}/${encodeURIComponent(owner)}`;
+        }
+
+        const alias = file.attributes.alias;
+        if (alias && web) {
+          file.links.player = `${web}/${alias}/${id}`;
+          file.links.user = `${web}/${alias}`;
         }
       }
 

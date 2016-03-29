@@ -6,7 +6,7 @@ const validator = require('../validator.js');
  * Defines default user class
  */
 module.exports = function getUserClass(config) {
-  const { host } = config;
+  const { host, web } = config;
   const users = config.users || {};
   const attachPoint = users.attachPoint || 'users';
   const { audience } = users;
@@ -77,6 +77,11 @@ module.exports = function getUserClass(config) {
         user.links = {
           self: `${host}${attachPoint}/${encodeURIComponent(user.id)}`,
         };
+
+        const alias = user.attributes.alias;
+        if (web && alias) {
+          user.links.user = `${web}/${alias}`;
+        }
       }
 
       return user;
