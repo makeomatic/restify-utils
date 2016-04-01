@@ -29,6 +29,7 @@ module.exports = function getFileClass(config) {
       'website',
       'files',
       'parts',
+      'tags',
     ];
 
     static int = [
