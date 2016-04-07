@@ -31,6 +31,7 @@ module.exports = function getFileClass(config) {
       'parts',
       'tags',
       'uploadedAt',
+      'decompressedLength',
     ];
 
     static int = [
