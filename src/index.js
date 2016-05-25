@@ -98,10 +98,14 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
       });
     });
 
+    attach.attachModels();
+  }
+
+  attach.attachModels = function() {
     config.models = ld.mapValues(models, generator => {
       return generator(config);
     });
-  }
+  };
 
   attach.files = files;
   attach.middleware = middleware;
