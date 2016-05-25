@@ -101,10 +101,8 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
     attach.attachModels();
   }
 
-  attach.attachModels = function() {
-    config.models = ld.mapValues(models, generator => {
-      return generator(config);
-    });
+  attach.attachModels = function attachModels() {
+    config.models = ld.mapValues(models, generator => generator(config));
   };
 
   attach.files = files;
