@@ -54,6 +54,18 @@
           "items": {
             "$ref": "#/definitions/file"
           }
+        },
+        "embed": {
+          "type": "object"
+        },
+        "temporary": {
+          "type": "boolean"
+        },
+        "bucket": {
+          "type": "string"
+        },
+        "unlisted": {
+          "type": "boolean"
         }
       },
       "patternProperties": {

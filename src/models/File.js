@@ -32,6 +32,10 @@ module.exports = function getFileClass(config) {
       'tags',
       'uploadedAt',
       'decompressedLength',
+      'embed',
+      'bucket',
+      'temporary',
+      'unlisted',
     ];
 
     static int = [
