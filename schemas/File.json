@@ -29,7 +29,7 @@
         },
         "status": {
           "type": "string",
-          "enum": [ "pending", "uploaded", "processed" ]
+          "enum": [ "pending", "uploaded", "processed", "processing", "failed" ]
         },
         "startedAt": {
           "type": "integer"
