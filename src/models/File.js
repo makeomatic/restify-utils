@@ -7,6 +7,8 @@ const STATUS_MAP = {
   1: 'pending',
   2: 'uploaded',
   3: 'processed',
+  4: 'processing',
+  5: 'failed',
 };
 
 /**

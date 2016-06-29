@@ -1,6 +1,6 @@
 {
   "name": "restify-utils",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "description": "Convenient utils for handling dynamic routing and configuration with restify framework",
   "main": "./lib/index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   "dependencies": {
     "common-errors": "^0.5.7",
     "debug": "^2.2.0",
-    "glob": "^7.0.4",
+    "glob": "^7.0.5",
     "lodash": "^4.13.1"
   },
   "peerDependencies": {
@@ -30,8 +30,8 @@
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
-    "babel-eslint": "^6.0.4",
-    "babel-plugin-transform-class-properties": "^6.9.1",
+    "babel-eslint": "^6.1.0",
+    "babel-plugin-transform-class-properties": "^6.10.2",
     "babel-plugin-transform-es2015-destructuring": "^6.9.0",
     "babel-plugin-transform-es2015-parameters": "^6.9.0",
     "babel-plugin-transform-es2015-shorthand-properties": "^6.8.0",
@@ -40,9 +40,9 @@
     "babel-plugin-transform-strict-mode": "^6.8.0",
     "babel-register": "^6.9.0",
     "chai": "^3.4.1",
-    "eslint": "^2.12.0",
+    "eslint": "^2.13.1",
     "eslint-config-airbnb-base": "^3.0.1",
-    "eslint-plugin-import": "^1.8.0",
+    "eslint-plugin-import": "^1.9.2",
     "eslint-plugin-mocha": "^3.0.0",
     "mocha": "^2.5.3"
   }
