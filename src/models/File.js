@@ -38,6 +38,7 @@ module.exports = function getFileClass(config) {
       'bucket',
       'temporary',
       'unlisted',
+      'controlsData',
     ];
 
     static int = [

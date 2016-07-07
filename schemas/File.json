@@ -46,6 +46,15 @@
         "model": {
           "type": "string"
         },
+        "obj": {
+          "type": "string"
+        },
+        "stl": {
+          "type": "string"
+        },
+        "wrl": {
+          "type": "string"
+        },
         "preview": {
           "type": "string"
         },
@@ -66,6 +75,14 @@
         },
         "unlisted": {
           "type": "boolean"
+        },
+        "controlsData": {
+          "type": "array",
+          "minLength": 29,
+          "maxLength": 29,
+          "items": {
+            "type": "number"
+          }
         }
       },
       "patternProperties": {
