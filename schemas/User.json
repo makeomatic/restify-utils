@@ -35,6 +35,14 @@
           "type": "string",
           "minLength": 1
         },
+        "additionalInformation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "org": {
+          "type": "boolean",
+          "default": false
+        },
         "country": {
           "type": "string",
           "minLength": 1

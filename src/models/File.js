@@ -1,8 +1,8 @@
 const Errors = require('common-errors');
 const ld = require('lodash');
 const validator = require('../validator.js');
-const isProduction = process.env.NODE_ENV === 'production';
 
+const isProduction = process.env.NODE_ENV === 'production';
 const STATUS_MAP = {
   1: 'pending',
   2: 'uploaded',

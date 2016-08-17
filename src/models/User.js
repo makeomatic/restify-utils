@@ -25,6 +25,8 @@ module.exports = function getUserClass(config) {
       'country',
       'city',
       'gender',
+      'org',
+      'additionalInformation',
     ];
 
     constructor(id, attributes = {}, isPublic) {

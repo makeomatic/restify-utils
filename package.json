@@ -1,6 +1,6 @@
 {
   "name": "restify-utils",
-  "version": "0.14.3",
+  "version": "1.0.0",
   "description": "Convenient utils for handling dynamic routing and configuration with restify framework",
   "main": "./lib/index.js",
   "scripts": {
@@ -20,30 +20,28 @@
   },
   "homepage": "https://github.com/makeomatic/restify-utils#readme",
   "dependencies": {
-    "common-errors": "^0.5.7",
+    "common-errors": "^1.0.0",
     "debug": "^2.2.0",
     "glob": "^7.0.5",
-    "lodash": "^4.13.1"
+    "lodash": "^4.15.0"
   },
   "peerDependencies": {
-    "ms-validation": "1.x.x || 2.x.x"
+    "ms-validation": "~3.x.x"
   },
   "devDependencies": {
-    "babel-cli": "^6.10.1",
-    "babel-eslint": "^6.1.0",
-    "babel-plugin-transform-class-properties": "^6.10.2",
+    "babel-cli": "^6.11.4",
+    "babel-eslint": "^6.1.2",
+    "babel-plugin-transform-class-properties": "^6.11.5",
+    "babel-plugin-transform-strict-mode": "^6.11.3",
     "babel-plugin-transform-es2015-destructuring": "^6.9.0",
-    "babel-plugin-transform-es2015-parameters": "^6.9.0",
-    "babel-plugin-transform-es2015-shorthand-properties": "^6.8.0",
-    "babel-plugin-transform-es2015-spread": "^6.8.0",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
-    "babel-plugin-transform-strict-mode": "^6.8.0",
-    "babel-register": "^6.9.0",
+    "babel-register": "^6.11.6",
     "chai": "^3.4.1",
-    "eslint": "^3.0.1",
-    "eslint-config-airbnb-base": "^4.0.0",
-    "eslint-plugin-import": "^1.10.2",
-    "eslint-plugin-mocha": "^4.0.0",
-    "mocha": "^2.5.3"
+    "eslint": "^3.3.1",
+    "eslint-config-airbnb-base": "^5.0.2",
+    "eslint-plugin-import": "^1.13.0",
+    "eslint-plugin-mocha": "^4.3.0",
+    "mocha": "^3.0.2",
+    "ms-validation": "~3.x.x"
   }
 }
