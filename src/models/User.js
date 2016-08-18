@@ -2,6 +2,8 @@ const ld = require('lodash');
 const Errors = require('common-errors');
 const validator = require('../validator.js');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 /**
  * Defines default user class
  */
@@ -40,9 +42,14 @@ module.exports = function getUserClass(config) {
 
       const data = this.data = {
         type: 'user',
-        id: isPublic ? attributes.alias : id,
+        id: isPublic ? (attributes.alias || id) : id,
         attributes: isPublic ? this.omitPrivateData(attributes) : attributes,
       };
+
+      // skip checking in production
+      if (isProduction) {
+        return;
+      }
 
       const result = validator.validateSync('User', data);
       if (result.error) {
