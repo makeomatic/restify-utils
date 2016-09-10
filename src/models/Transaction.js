@@ -30,6 +30,7 @@ module.exports = function getSaleClass(config) {
         attributes,
       };
 
+      attributes.description = Transaction.descriptionFilter(attributes.description);
       attributes.humanDescription = this.remapDescription(attributes.type);
 
       const { error } = validator.validateSync('Transaction', data);
@@ -58,6 +59,12 @@ module.exports = function getSaleClass(config) {
           process.stderr.write('unexpected transaction type\n');
           return '';
       }
+    }
+
+    static matchRedundantInfo = /(?:\s*(?:for|with)\s*info@cappasity.com)/gi;
+
+    static descriptionFilter(description) {
+      return description.replace(Transaction.matchRedundantInfo, '')
     }
 
     /**
