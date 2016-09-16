@@ -65,7 +65,7 @@ module.exports = function getFileClass(config) {
       };
 
       // coerce types
-      File.int.forEach(field => {
+      File.int.forEach((field) => {
         if (attributes[field]) {
           attributes[field] = parseInt(attributes[field], 10);
         }

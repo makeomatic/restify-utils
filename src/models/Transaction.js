@@ -31,7 +31,7 @@ module.exports = function getSaleClass(config) {
       };
 
       attributes.description = Transaction.descriptionFilter(attributes.description);
-      attributes.humanDescription = this.remapDescription(attributes.type);
+      attributes.humanDescription = Transaction.remapDescription(attributes.type);
 
       const { error } = validator.validateSync('Transaction', data);
       if (error) {
@@ -47,7 +47,7 @@ module.exports = function getSaleClass(config) {
       return this.data.attributes || {};
     }
 
-    remapDescription(type) {
+    static remapDescription(type) {
       switch (type) {
         case 0:
           return 'Cloud Service subscription';
@@ -64,7 +64,7 @@ module.exports = function getSaleClass(config) {
     static matchRedundantInfo = /(?:\s*(?:for|with)\s*info@cappasity.com)/gi;
 
     static descriptionFilter(description) {
-      return description.replace(Transaction.matchRedundantInfo, '')
+      return description.replace(Transaction.matchRedundantInfo, '');
     }
 
     /**

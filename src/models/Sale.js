@@ -59,7 +59,7 @@ module.exports = function getSaleClass(config) {
       }
 
       if (!isAdmin) {
-        (sale.attributes.transactions || []).forEach(transaction => {
+        (sale.attributes.transactions || []).forEach((transaction) => {
           transaction.related_resources = undefined;
         });
       }

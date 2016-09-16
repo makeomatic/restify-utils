@@ -43,7 +43,7 @@ module.exports = function getUserClass(config) {
       const data = this.data = {
         type: 'user',
         id: isPublic ? (attributes.alias || id) : id,
-        attributes: isPublic ? this.omitPrivateData(attributes) : attributes,
+        attributes: isPublic ? User.omitPrivateData(attributes) : attributes,
       };
 
       // skip checking in production
@@ -70,7 +70,7 @@ module.exports = function getUserClass(config) {
       return roles && roles.indexOf('admin') !== -1;
     }
 
-    omitPrivateData(data) {
+    static omitPrivateData(data) {
       return ld.pick(data, User.dataWhiteList);
     }
 
