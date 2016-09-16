@@ -32,6 +32,7 @@ module.exports = function getFileClass(config) {
       'files',
       'parts',
       'tags',
+      'type',
       'uploadedAt',
       'decompressedLength',
       'embed',
