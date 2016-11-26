@@ -68,7 +68,7 @@ module.exports = function getSaleClass(config) {
     static deserialize(data) {
       const {
         transaction,
-        ...other,
+        ...other
       } = data;
 
       return new Recurring(transaction.transaction_id, { ...transaction, ...other });

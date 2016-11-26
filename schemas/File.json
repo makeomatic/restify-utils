@@ -18,6 +18,9 @@
         "name": {
           "type": "string"
         },
+        "alias": {
+          "type": "string"
+        },
         "description": {
           "type": "string"
         },

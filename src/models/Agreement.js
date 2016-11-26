@@ -68,7 +68,7 @@ module.exports = function getSaleClass(config) {
     static deserialize(data) {
       const {
         agreement,
-        ...other,
+        ...other
       } = data;
 
       return new Agreement(agreement.id, { ...agreement, ...other });

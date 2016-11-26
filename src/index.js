@@ -13,6 +13,7 @@ function loadModule(container) {
     debug('loaded file %s', file);
     const parts = file.split('/');
     const name = path.basename(parts.pop(), '.js');
+    // eslint-disable-next-line import/no-dynamic-require
     container[name] = require(file);
   };
 }
