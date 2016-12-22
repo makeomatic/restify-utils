@@ -23,12 +23,15 @@ module.exports = function getUserClass(config) {
       'alias',
       'firstName',
       'lastName',
-      'companyName',
-      'country',
-      'city',
       'gender',
+      'birthday',
+      'city',
+      'country',
+      'website',
       'org',
-      'additionalInformation',
+      'companyName',
+      'shortDescription',
+      'longDescription',
     ];
 
     constructor(id, attributes = {}, isPublic) {
@@ -68,6 +71,10 @@ module.exports = function getUserClass(config) {
     isAdmin() {
       const { roles } = this.data.attributes;
       return roles && roles.indexOf('admin') !== -1;
+    }
+
+    isOrg() {
+      return this.data.attributes.org;
     }
 
     static omitPrivateData(data) {
