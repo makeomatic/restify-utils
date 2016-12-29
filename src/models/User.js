@@ -33,6 +33,8 @@ module.exports = function getUserClass(config) {
       'shortDescription',
       'longDescription',
       'additionalInformation',
+      'profileLogo',
+      'profileCover',
     ];
 
     constructor(id, attributes = {}, isPublic) {
