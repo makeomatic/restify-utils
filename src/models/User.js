@@ -23,8 +23,6 @@ module.exports = function getUserClass(config) {
       'alias',
       'firstName',
       'lastName',
-      'gender',
-      'birthday',
       'city',
       'country',
       'website',

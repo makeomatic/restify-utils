@@ -11,6 +11,7 @@
     "no-param-reassign": [2, {"props":false}],
     "global-require": 0,
     "prefer-arrow-callback": 0,
-    "prefer-spread": 0
+    "prefer-spread": 0,
+    "no-multi-assign": 0
   }
 }

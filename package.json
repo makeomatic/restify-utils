@@ -6,6 +6,7 @@
   "scripts": {
     "compile": "babel -d ./lib ./src",
     "prepublish": "npm run compile",
+    "postversion": "git push && npm publish && git push --tags",
     "test": "npm run lint && mocha",
     "lint": "eslint ./src"
   },
@@ -38,7 +39,7 @@
     "babel-register": "^6.18.0",
     "chai": "^3.4.1",
     "eslint": "^3.11.0",
-    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-config-airbnb-base": "^11.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-mocha": "^4.7.0",
     "mocha": "^3.2.0",

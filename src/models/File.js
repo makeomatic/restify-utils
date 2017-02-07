@@ -41,6 +41,7 @@ module.exports = function getFileClass(config) {
       'unlisted',
       'controlsData',
       'alias',
+      'uploadType',
     ];
 
     static int = [
