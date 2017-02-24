@@ -10,7 +10,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 module.exports = function getUserClass(config) {
   const { host, web } = config;
   const users = config.users || {};
-  const attachPoint = users.attachPoint || 'users';
+  const attachPoint = users.attachPoint || '/users';
   const { audience } = users;
 
   /**

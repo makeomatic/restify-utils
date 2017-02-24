@@ -106,8 +106,8 @@ module.exports = function getFileClass(config) {
       const file = ld.clone(this.data);
       const files = config.files || {};
       const users = config.users || {};
-      const attachPoint = files.attachPoint || 'files';
-      const usersAttachPoint = users.attachPoint || 'users';
+      const attachPoint = files.attachPoint || '/files';
+      const usersAttachPoint = users.attachPoint || '/users';
       const id = file.id;
 
       if (addLink) {
