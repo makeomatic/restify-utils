@@ -90,7 +90,7 @@ exports.attach = function createAttach(config, endpointsDir, middlewareDir) {
             }
 
             args.push(handler);
-            const attached = server[method].apply(server, args);
+            const attached = server[method](...args);
             if (!attached) {
               console.error('route %s with path %s could not be attached', args[0].name, args[0].path); // eslint-disable-line
             }

@@ -117,13 +117,13 @@ module.exports = function getFileClass(config) {
 
         const owner = file.attributes.owner;
         if (owner) {
-          file.links.owner = `${host}${usersAttachPoint}/${encodeURIComponent(owner)}`;
-        }
+          const alias = encodeURIComponent(owner);
+          file.links.owner = `${host}${usersAttachPoint}/${alias}`;
 
-        const alias = file.attributes.alias;
-        if (alias && web) {
-          file.links.player = `${web}/${alias}/${id}`;
-          file.links.user = `${web}/${alias}`;
+          if (web) {
+            file.links.player = `${web}/${alias}/${id}`;
+            file.links.user = `${web}/${alias}`;
+          }
         }
       }
 
