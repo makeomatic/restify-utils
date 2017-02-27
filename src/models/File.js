@@ -42,6 +42,7 @@ module.exports = function getFileClass(config) {
       'controlsData',
       'alias',
       'uploadType',
+      'backgroundColor',
     ];
 
     static int = [
