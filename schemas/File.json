@@ -79,6 +79,9 @@
         "unlisted": {
           "type": "boolean"
         },
+        "packed": {
+          "type": "string"
+        },
         "controlsData": {
           "type": "array",
           "minLength": 29,
@@ -104,7 +107,7 @@
         },
         "type": {
           "type": "string",
-          "enum": ["c-bin", "c-texture", "c-preview", "c-archive", "wrl", "obj", "stl"]
+          "enum": ["c-bin", "c-texture", "c-preview", "c-archive", "c-pack", "wrl", "obj", "stl"]
         },
         "contentLength": {
           "type": "integer"
