@@ -107,7 +107,7 @@
         },
         "type": {
           "type": "string",
-          "enum": ["c-bin", "c-texture", "c-preview", "c-archive", "c-pack", "wrl", "obj", "stl"]
+          "enum": ["c-bin", "c-texture", "c-preview", "c-archive", "c-simple", "c-pack", "wrl", "obj", "stl"]
         },
         "contentLength": {
           "type": "integer"
