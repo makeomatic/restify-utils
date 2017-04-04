@@ -44,6 +44,7 @@ module.exports = function getFileClass(config) {
       'uploadType',
       'backgroundColor',
       'packed',
+      'direct',
     ];
 
     static int = [
