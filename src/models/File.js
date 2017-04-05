@@ -3,6 +3,7 @@ const ld = require('lodash');
 const validator = require('../validator.js');
 
 const isProduction = process.env.NODE_ENV === 'production';
+const hasOwnProperty = Object.prototype.hasOwnProperty;
 const STATUS_MAP = {
   1: 'pending',
   2: 'uploaded',
@@ -54,6 +55,24 @@ module.exports = function getFileClass(config) {
       'parts',
     ];
 
+    static boolean = [
+      'public',
+      'unlisted',
+      'temporary',
+    ];
+
+    static remapAttributesToInt(field) {
+      if (hasOwnProperty.call(this, field)) {
+        this[field] = parseInt(this[field], 10);
+      }
+    }
+
+    static remapAttributesToBoolean(field) {
+      if (hasOwnProperty.call(this, field)) {
+        this[field] = !!this[field];
+      }
+    }
+
     constructor(id, attributes = {}, isPublic) {
       if (!id) {
         throw new Errors.ValidationError('must include id', 400, 'arguments[0]');
@@ -70,11 +89,8 @@ module.exports = function getFileClass(config) {
       };
 
       // coerce types
-      File.int.forEach((field) => {
-        if (attributes[field]) {
-          attributes[field] = parseInt(attributes[field], 10);
-        }
-      });
+      File.int.forEach(File.remapAttributesToInt, data.attributes);
+      File.boolean.forEach(File.remapAttributesToBoolean, data.attributes);
 
       // remap status to human description
       if (attributes.status) {
