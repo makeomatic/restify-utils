@@ -90,7 +90,13 @@ module.exports = function getFileClass(config) {
 
       // coerce types
       File.int.forEach(File.remapAttributesToInt, data.attributes);
-      File.boolean.forEach(File.remapAttributesToBoolean, data.attributes);
+
+      // NOTE: boolean transforms should be applied only when we fix the client
+      // so that it can correctly transform 'true' to 1
+      // Currently we disable this in production
+      if (!isProduction) {
+        File.boolean.forEach(File.remapAttributesToBoolean, data.attributes);
+      }
 
       // remap status to human description
       if (attributes.status) {
