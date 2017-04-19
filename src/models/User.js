@@ -110,7 +110,7 @@ module.exports = function getUserClass(config) {
     }
 
     static deserialize(data) {
-      return new User(data.username, data.metadata[audience], data.public);
+      return new User(data.id, data.metadata[audience], data.public);
     }
   };
 };
