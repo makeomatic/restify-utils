@@ -1,5 +1,7 @@
 # Restify Utils
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/makeomatic/restify-utils.svg)](https://greenkeeper.io/)
+
 ## Install
 
 `npm i restify-utils -S`
